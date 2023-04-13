@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @apply h-full w-full m-0 p-0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @apply h-full w-full m-0 p-0;
+  }
+}
+
+body {
+  @apply h-full w-full m-0 p-0;
+}

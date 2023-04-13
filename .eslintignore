@@ -1,0 +1,8 @@
+node_modules/
+docs/
+Makefile
+package.json
+yarn.lock
+Dockerfile
+tsconfig.json
+.eslintrc.json
