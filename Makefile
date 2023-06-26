@@ -1,45 +1,53 @@
 # ┌─────────────────────────────────────────────────────────────────────────────┐
-# │ Colors definitions                                                          │
-# └─────────────────────────────────────────────────────────────────────────────┘
-CR=\033[0;31m
-CG=\033[0;32m
-CY=\033[0;33m
-CB=\033[0;36m
-RC=\033[0m
-
-# ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ Commands                                                                    │
 # └─────────────────────────────────────────────────────────────────────────────┘
 .PHONY: build
 build:
-	@docker rm next-app 2>/dev/null || true
-	@docker rmi next-app_image 2>/dev/null || true
-	@docker build . -t next-app_image
-	@docker create --name next-app -p 3001:3000 next-app_image
+	@cd .docker/bin; bash build.sh
 
-.PHONY: stop
-stop:
-	@docker stop next-app
+.PHONY: exec
+exec:
+	@cd .docker/bin; bash exec.sh
 
-.PHONY: sh
-sh:
-	@docker exec -it next-app sh
+.PHONY: latest
+latest:
+	@cd .docker/bin; bash latest.sh
+
+.PHONY: next
+next:
+	@cd .docker/bin; bash next.sh
+
+.PHONY: rollback
+rollback:
+	@cd .docker/bin; bash rollback.sh
 
 .PHONY: start
 start:
-	@docker start next-app
+	@cd .docker/bin; bash start.sh
+
+.PHONY: stop
+stop:
+	@cd .docker/bin; bash stop.sh
+
+.PHONY: remove
+remove:
+	@cd .docker/bin; bash remove.sh $(BUILD_ID)
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ Help                                                                        │
 # └─────────────────────────────────────────────────────────────────────────────┘
 help:
 	@echo ""
-	@echo -e "${CY}Usage:${RC}"
-	@echo -e "   make ${CG}<command>${RC}"
+	@echo "Usage:"
+	@echo "    make <command>"
 	@echo ""
-	@echo -e "${CY}Infra commands:${RC}"
-	@echo -e "${CG}   build               ${RC}Build all containers"
-	@echo -e "${CG}   start               ${RC}Start all containers"
-	@echo -e "${CG}   stop                ${RC}Stop all containers"
-	@echo -e "${CG}   sh                  ${RC}Enter inside a container"
+	@echo "Infra commands:"
+	@echo "    build               Build new image and creates a new container."
+	@echo "    exec                Enter in current container."
+	@echo "    latest              Starts container based on latest build."
+	@echo "    next                Starts next container."
+	@echo "    rollback            Reverts to the last valid container."
+	@echo "    start               Starts current container."
+	@echo "    stop                Stops current container."
+	@echo "    remove              Remove current container."
 	@echo ""
