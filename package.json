@@ -13,8 +13,8 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
   "dependencies": {
-    "@types/node": "20.4.5",
-    "@types/react": "18.2.17",
+    "@types/node": "20.4.8",
+    "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
     "husky": "^8.0.3",
     "next": "13.4.12",
@@ -29,7 +29,7 @@
     "autoprefixer": "10.4.14",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "8.45.0",
+    "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "lint-staged": "^13.2.3",
     "postcss": "8.4.27",
